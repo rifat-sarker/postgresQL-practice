@@ -26,3 +26,7 @@ VALUES
 
 -- see all data from students relation
 SELECT * from students;
+
+-- see email as rifat sarker
+-- SELECT email as "rifat sarker" from students;
+SELECT email as "rifat sarker" from students;
