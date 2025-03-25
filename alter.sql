@@ -1,3 +1,13 @@
+-- Active: 1742917181621@@127.0.0.1@5432@test_db
+
+
+CREATE Table customer (
+    id SERIAL PRIMARY KEY,
+    user_name VARCHAR(10) not NULL,
+    email VARCHAR(255) UNIQUE NOT NULL
+)
+
+
 select * from customer;
 
 
@@ -36,6 +46,7 @@ ALTER TABLE customer
 -- add unique constraints
 ALTER TABLE customer
     ADD constraint unique_customer_customer_age UNIQUE(customer_age);
+
 
 -- remeve/ delete constraints
 ALTER TABLE customer
