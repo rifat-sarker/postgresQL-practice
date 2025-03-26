@@ -1,9 +1,10 @@
+-- Active: 1742917181621@@127.0.0.1@5432@test_db
 
 
 -- create students relation
 CREATE TABLE students (
     student_id SERIAL PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
+    first_name VARCHAR(50) NOT NULL UNIQUE,
     last_name VARCHAR(50) NOT NULL,
     age INT,
     grade CHAR(2),
@@ -147,3 +148,106 @@ SELECT * from students
 
 -- set not provided value whose email is null, coalesce can receive multiple value
 SELECT COALESCE(email, 'Not Provided') as "Email", blood_group, age from students;
+
+
+
+
+-----------------------
+-- not
+------------------------
+-- see all data where country is Australia, USA or Canada
+--  this is long query
+SELECT * from students WHERE country = 'USA' or country ='Canada' or country = 'Australia'; 
+
+
+-- short query
+SELECT * from students WHERE country NOT IN ('USA','Canada','Australia');
+
+-- USA,Canada, Australia hote parbe na
+SELECT * from students WHERE country NOT IN ('USA','Canada','Australia');
+
+
+
+
+-------------------------------
+-- between
+------------------------------
+-- select students whose age between 19 and 25
+SELECT * from students WHERE age BETWEEN 19 AND 25;
+
+SELECT * from students 
+    WHERE dob BETWEEN '2000-01-01' AND '2005-01-01' ORDER BY dob;
+
+
+-- LIKE --> acts like search param query -- case sensitive
+SELECT * from students
+    -- %am --> ends with am
+    WHERE first_name LIKE '%am';
+
+    -- S& --> starts with S
+    -- WHERE first_name LIKE 'S%';
+
+    -- __a% --> first two letter ignore and then starts with a
+    -- WHERE first_name LIKE '__a%';
+
+
+-- ILIKE --> same as LIKE but it is case in-sensitive
+SELECT * from students
+    -- L% --> ends with am
+    WHERE first_name ILIKE 'l%';
+
+
+
+
+----------------------------------
+-- limit and pagination
+----------------------------------
+
+SELECT * from students
+ WHERE country IN ('USA','UK','Australia')  LIMIT 5;
+
+
+
+-- show 5 data per page . here backend sequence is 0,1,2,3,4 etc just like index
+-- 1st page
+SELECT * from students LIMIT 5 OFFSET 5*0;
+-- 2nd page
+SELECT * from students LIMIT 5 OFFSET 5*1;
+-- 3rd page
+SELECT * from students LIMIT 5 OFFSET 5*2;
+-- 4rd page
+SELECT * from students LIMIT 5 OFFSET 5*3;
+
+
+
+
+
+---------------------------
+-- delete row 
+----------------------------
+DELETE from students
+    WHERE grade = 'C+' AND country= 'Australia';
+
+
+
+
+------------------------------------
+-- update 
+-------------------------------------
+
+UPDATE students
+    SET email = 'rifatswd@gmail.com'
+    WHERE student_id =25
+
+-- if update multiple fields
+UPDATE students
+    SET email = 'rifatswd@gmail.com', age = 30, course = 'Bangla'
+    WHERE student_id =25
+
+
+
+-- delete and update in db are crucial so be carefull 
+
+
+
+SELECT * from students;
