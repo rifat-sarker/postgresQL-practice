@@ -62,6 +62,10 @@ SELECT DISTINCT country from students;
 SELECT * from students
     WHERE country = 'USA';
 
+-- where coutry is not USA
+SELECT * from students    
+    WHERE NOT country = 'USA';
+
 
 -- see all students whose grade A+ and course is Physics 
 SELECT * from students
@@ -90,6 +94,7 @@ SELECT * from students
 -- select all students whose country is not USA
 SELECT * from students
     WHERE country <> 'USA';
+    -- WHERE NOT country = 'USA';
 
 
 
@@ -124,3 +129,21 @@ SELECT count(*) from students;
 SELECT max(length(first_name)) from students;
 
 SELECT * from students
+
+
+
+
+
+
+
+---------------------------
+-- null and coalescing
+---------------------------
+
+-- select all students whose email is null
+SELECT * from students
+    WHERE email IS NULL;
+
+
+-- set not provided value whose email is null, coalesce can receive multiple value
+SELECT COALESCE(email, 'Not Provided') as "Email", blood_group, age from students;
