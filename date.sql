@@ -46,3 +46,5 @@ select extract(day from '2010-01-01'::date);
 select '1' ::BOOLEAN;
 select 'n' ::BOOLEAN;
 select 'y' ::BOOLEAN;
+
+
