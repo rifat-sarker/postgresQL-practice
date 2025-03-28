@@ -8,7 +8,9 @@ CREATE table "user"(
 CREATE table post (
     id SERIAL PRIMARY KEY,
     title TEXT not NULL,
-    user_id INTEGER REFERENCES "user"(id)
+    -- user_id INTEGER REFERENCES "user"(id) ON DELETE CASCADE
+    -- user_id INTEGER REFERENCES "user"(id) ON DELETE set null
+    user_id INTEGER REFERENCES "user"(id) ON DELETE set DEFAULT DEFAULT 2
 )
 
 -- null will not be accepted
@@ -32,11 +34,7 @@ insert into post (title, user_id) values ('test', null);
 SELECT * from "user";
 SELECT * from post;
 drop table post;
-
-
-
-
-
+drop table "user";
 
 
 
@@ -47,3 +45,15 @@ drop table post;
 -- attempting to insert a new post with a  user id that doesn't exist
 -- inserting a post with a valid user id
 -- attempting to insert a post without specifying a user id
+
+
+DELETE FROM "user"
+    WHERE id = 4
+
+
+
+-- deletion constraint on Delete user
+-- Restrict deletion -- on delete restrict / on delete no action (default)
+-- cascading deletion -- on delete cascade
+-- setting null -- on delete set null
+-- set default value --on delete set default
