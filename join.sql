@@ -66,3 +66,15 @@ LEFT OUTER JOIN "user" u on p.user_id = u.id;
 SELECT * from post as p
 RIGHT JOIN "user" u on p.user_id = u.id;
 
+
+
+
+
+-- full join---- it will show everything null, left , right join
+SELECT * from post as p
+FULL JOIN "user" u on p.user_id = u.id;
+
+
+
+
+
