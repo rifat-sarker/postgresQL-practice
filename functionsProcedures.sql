@@ -52,6 +52,7 @@ SELECT delete_emp_by_id(29);
 
 
 -- create procedure
+-- function can return but procedure can't return -- using plpgsql provide extra features
 
 CREATE Procedure remove_emp()
 LANGUAGE plpgsql
