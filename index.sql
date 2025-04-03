@@ -48,3 +48,20 @@ SELECT * from employees2 WHERE salary = 95094.95;
 
 CREATE INDEX idx_employees2_salary
 on employees2 (salary);
+
+CREATE INDEX idx_employees2_salary2
+on employees2 USING HASH (salary);
+
+
+SHOW data_directory;
+
+
+/* 
+note: index with primary keys are fast
+Others way of indexing
+1. B -tree (default)
+2. hash 
+3. gin
+4. gist
+*/
+
