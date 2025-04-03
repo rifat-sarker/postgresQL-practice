@@ -16,6 +16,7 @@ CREATE TABLE departments (
 
 
 drop Table employees;
+drop Table departments;
 
 
 INSERT INTO departments (department_name) VALUES 
